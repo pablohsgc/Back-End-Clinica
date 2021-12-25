@@ -1,0 +1,14 @@
+npm init -y
+npm i express 
+npm i typescript ts-node @types/node @types/express --save-dev
+npm i -D @types/express
+npm i ts-node-dev -D
+npx tsc --init
+
+-obs: altere o arquivo tsconfig.json, retire o comentario do atributo outDir e altere o conteúdo da linha para: "outDir": "./dist",    
+-obs: adicione os escripts no arquivo package.json
+    "scripts": {
+    "build": "tsc",
+    "dev":"ts-node-dev --respawn --transpile-only src/server.ts",
+    "start": "node dist/server.js"
+  }
