@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <title>Clínica Viver Bem</title>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css' rel='stylesheet'>
+    <link href='' rel='stylesheet'>
+    <style>
+        .panel.with-nav-tabs .panel-heading {
+            padding: 5px 5px 0 5px;
+        }
+
+        .panel.with-nav-tabs .nav-tabs {
+            border-bottom: none;
+        }
+
+        .panel.with-nav-tabs .nav-justified {
+            margin-bottom: -1px;
+        }
+        .footer {
+            color: #31708f;
+            background-color: #bce8f1;
+            border-color: transparent;
+            padding: 1%;
+
+        }
+    </style>
+</head>
+
+<nav>
+    <div class="panel with-nav-tabs panel-info">
+        <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="index.html" data-toggle="tab">Home</a></li>
+            <li><a href="galeria.html">Galeria</a></li>
+            <li><a href="endereco.html">Adicionar Endereço</a></li>
+            <li><a href="agenda.html">Agendar Consulta</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+        </div>
+    </div>
+</nav>
+
+<body>
+    <div class="container">
+        <div class="alert alert-info" role="alert">
+            Adicionar endereço
+        </div>
+        <p>
+            Os endereços adicionados aqui, serão armazenados em nossa base de endereços e usados para melhor atendê-los.
+        </p>
+
+        <div class="container2">
+            <div class="alert alert-info" role="alert">CEP</div>
+                <input type="text" class="form-control" placeholder="Digite o CEP"><br>
+            <div class="alert alert-info" role="alert">Logradouro</div>
+                <input type="text" class="form-control" placeholder="Digite o Logradouro"><br>
+            <div class="alert alert-info" role="alert">Bairro</div>
+                <input type="text" class="form-control" placeholder="Digite o Bairro"><br>
+            <div class="alert alert-info" role="alert">Cidade</div>
+                <input type="text" class="form-control" placeholder="Digite a Cidade"><br>
+            <div class="alert alert-info" role="alert">Estado</div>
+                <input type="text" class="form-control" placeholder="Digite o Estado"><br>
+        </div>  
+        <div class="form-group col-md-12 text-center">
+            <button id="Cadastrar" name="Cadastrar" class="btn btn-primary" type="Submit">Cadastrar</button>
+            <button id="Cancelar" name="Cancelar" class="btn btn-secondary" type="Reset">Cancelar</button>
+        </div>          
+    </div>
+    <br>
+</body>
+<footer class="footer">
+    <div class="container-fluid text-center">
+        <p>Clínica Viver Bem &#169; 2022</p>
+    </div>
+</footer>     
+
+</html>
