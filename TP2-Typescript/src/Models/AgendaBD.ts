@@ -6,7 +6,7 @@ class AgendaBD{
     }
 
     async agendamentos(){
-        const query = 'select * from  PESSOA P join Paciente F on P.codigo=F.codigo';
+        const query = 'select * from AGENDA';
         
         const result = await db.query(query);
 
