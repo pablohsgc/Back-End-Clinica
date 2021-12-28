@@ -1,5 +1,6 @@
+-- Criacao de tabelas
 create table Pessoa(
-    codigo numeric(10) primary key,
+    codigo numeric(11) primary key,
     nome varchar(50),
     email varchar(30),
     telefone varchar(20),
@@ -11,7 +12,7 @@ create table Pessoa(
 );
 
 create table Funcionario(
-    codigo numeric(10) primary key,
+    codigo numeric(11) primary key,
     dataContrato Date,
     salario numeric(6,2),
     senhaHash varchar(30),
@@ -19,7 +20,7 @@ create table Funcionario(
 );
 
 create table Paciente(
-    codigo numeric(10) primary key,
+    codigo numeric(11) primary key,
     altura numeric(3,2),
     tipoSanguineo varchar(10),
     peso numeric(3,1),
@@ -27,10 +28,21 @@ create table Paciente(
 );
 
 create table Medico(
-    codigo numeric(10) primary key,
+    codigo numeric(11) primary key,
     especialidade varchar(20),
     crm numeric(6),
     FOREIGN KEY (codigo) REFERENCES Funcionario (codigo)
+);
+
+create table Agenda(
+    codigo numeric(11) primary key,
+    dataConsulta date not null,
+    horario varchar(5) not null,
+    nome varchar(50) not null,
+    email varchar(30),
+    telefone varchar(20),
+    codigoMedico numeric(11),
+    FOREIGN KEY (codigo) REFERENCES Medico (codigo)
 );
 
 
@@ -47,9 +59,9 @@ insert into Pessoa values (6,'Renan Lima','email@gmail.com','99999999999','88888
 select * from Pessoa;
 
 --Inserts em funcionario
-insert into Funcionario values (1,sysdate,3200,'asdasd');
-insert into Funcionario values (2,sysdate,1000,'asdasd');
-insert into Funcionario values (3,sysdate,2200,'asdasd');
+insert into Funcionario values (1,current_date,3200,'asdasd');
+insert into Funcionario values (2,current_date,1000,'asdasd');
+insert into Funcionario values (3,current_date,2200,'asdasd');
 
 select * from funcionario;
 
@@ -73,12 +85,9 @@ select * from  PESSOA P join Funcionario F on P.codigo=F.codigo; --projecao util
 
 select * from Pessoa P join Medico M on P.codigo=M.codigo join Funcionario F on P.codigo=F.codigo; -- projecao utilizando a juncao com medico, pessoa e funcionario
 
-create table Agenda(
-    codigo,
-    data,
-    horario,
-    nome,
-    email,
-    telefone,
-    codigoMedico,
-);
+
+drop table pessoa cascade;
+drop table paciente cascade ;
+drop table funcionario cascade ;
+drop table medico cascade ;
+drop table agenda cascade ;

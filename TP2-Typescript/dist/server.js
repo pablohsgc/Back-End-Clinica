@@ -3,20 +3,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// Importing module
 const express_1 = __importDefault(require("express"));
-const Pessoa_1 = require("./Pessoa");
+const pacientesRoute_1 = __importDefault(require("./Routes/pacientesRoute"));
+const funcionariosRoute_1 = __importDefault(require("./Routes/funcionariosRoute"));
+const medicosRoute_1 = __importDefault(require("./Routes/medicosRoute"));
 const app = (0, express_1.default)();
-const PORT = 3000;
-var pessoa = new Pessoa_1.Pessoa("Pablo Henrique", "08/02/2000");
-console.log("Eu sou:", pessoa.getNome());
-console.log("Eu nasci em:", pessoa.getDataNasc());
-// Handling GET / Request
+const PORT = 3000 || process.env.PORT;
 app.get('/', (req, res) => {
-    res.send('Welcome to typescript backend!');
+    res.send('Backend da aplicação rodando na porta ' + PORT);
 });
+app.use(pacientesRoute_1.default);
+app.use(funcionariosRoute_1.default);
+app.use(medicosRoute_1.default);
 // Server setup
 app.listen(PORT, () => {
-    console.log('The application is listening '
-        + 'on port http://localhost:' + PORT);
+    console.log('Teste a aplicação no seu navegador em: \nhttp://localhost:' + PORT);
 });
