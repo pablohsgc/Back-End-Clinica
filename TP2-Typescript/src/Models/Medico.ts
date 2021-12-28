@@ -4,10 +4,18 @@ export default class Medico extends Funcionario{ //classe medico nao precisa de 
     private especialidade:String;
     private CRM:Number;
     
-    constructor(codigo:Number,nome:String,email:String,telefone:String,cep:String,logradouro:String,bairro:String,cidade:String,estado:String,dataContrato:Date,salario:Number,senhaHash:String,especialidade:String,CRM:Number){
-        super(codigo,nome,email,telefone,cep,logradouro,bairro,cidade,estado,dataContrato,salario,senhaHash)
+    constructor(nome:String,codigo:Number,email:String,telefone:String,cep:String,logradouro:String,bairro:String,cidade:String,estado:String,dataContrato:Date,salario:Number,senhaHash:String,especialidade:String,CRM:Number){
+        super(nome,codigo,email,telefone,cep,logradouro,bairro,cidade,estado,dataContrato,salario,senhaHash)
         this.especialidade = especialidade;
         this.CRM = CRM;
+    }
+
+    public getEspecialidade(){
+        return this.especialidade;
+    }
+
+    public setEspecialidade(especialidade:String){
+        this.especialidade = especialidade;
     }
 
     public getCRM(){

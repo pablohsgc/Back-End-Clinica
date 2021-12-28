@@ -1,3 +1,5 @@
+import Funcionario from "./Funcionario";
+
 const db = require('../db')
 
 class FuncionarioBD{
@@ -13,6 +15,21 @@ class FuncionarioBD{
         const rows = result.rows;
 
         return rows || [];
+    }
+
+    async insereFuncionario(funcionario:Funcionario){
+        let values = [funcionario.getCodigo(),funcionario.getDataContrato(),funcionario.getSalario(),funcionario.getSenhaHash()];
+        
+        const query = 'insert into Funcionario (codigo,dataContrato,salario,senhaHash) values ($1,$2,$3,$4) RETURNING codigo';
+        
+        try{
+            const {rows} = await db.query(query,values);
+            
+            return rows[0].codigo;
+        }catch(erro){
+            
+            throw erro
+        }
     }
 }
 

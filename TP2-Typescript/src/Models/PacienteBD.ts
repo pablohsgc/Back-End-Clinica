@@ -20,12 +20,12 @@ class PacienteBD{
     async inserePaciente(paciente:Paciente){
         let values = [paciente.getCodigo(),paciente.getAltura(),paciente.getTipoSanguineo(),paciente.getPeso()];
         
-        const query = 'insert into Paciente (codigo,altura,tipoSanguineo,peso) values ($1,$2,$3,$4);';
+        const query = 'insert into Paciente (codigo,altura,tipoSanguineo,peso) values ($1,$2,$3,$4) RETURNING codigo';
         
         try{
-            await db.query(query,values);
+            const {rows} = await db.query(query,values);
            
-            return `Paciente: ${paciente.getNome()}, cadastrado na base de dados!`;
+            return rows[0].codigo;
         }catch(erro){
             
             throw erro
