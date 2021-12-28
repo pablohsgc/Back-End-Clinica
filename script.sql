@@ -1,6 +1,6 @@
 -- Criacao de tabelas
 create table Pessoa(
-    codigo numeric(11) primary key,
+    codigo serial primary key,
     nome varchar(50),
     email varchar(30),
     telefone varchar(20),
@@ -12,7 +12,7 @@ create table Pessoa(
 );
 
 create table Funcionario(
-    codigo numeric(11) primary key,
+    codigo integer primary key,
     dataContrato Date,
     salario numeric(6,2),
     senhaHash varchar(30),
@@ -20,7 +20,7 @@ create table Funcionario(
 );
 
 create table Paciente(
-    codigo numeric(11) primary key,
+    codigo integer primary key,
     altura numeric(3,2),
     tipoSanguineo varchar(10),
     peso numeric(3,1),
@@ -28,14 +28,14 @@ create table Paciente(
 );
 
 create table Medico(
-    codigo numeric(11) primary key,
+    codigo integer primary key,
     especialidade varchar(20),
     crm numeric(6),
     FOREIGN KEY (codigo) REFERENCES Funcionario (codigo)
 );
 
 create table Agenda(
-    codigo numeric(11) primary key,
+    codigo integer primary key,
     dataConsulta date not null,
     horario varchar(5) not null,
     nome varchar(50) not null,
@@ -49,12 +49,12 @@ create table Agenda(
 --Inserts-------------------------
 
 --Inserts em pessoa
-insert into Pessoa values (1,'Pablo Henrique','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
-insert into Pessoa values (2,'Jose silva','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
-insert into Pessoa values (3,'Ricardo','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
-insert into Pessoa values (4,'Ana Gabriela','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
-insert into Pessoa values (5,'Cario Oliveira','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
-insert into Pessoa values (6,'Renan Lima','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Pablo Henrique','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Jose silva','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Ricardo','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Ana Gabriela','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Cario Oliveira','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Renan Lima','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
 
 select * from Pessoa;
 

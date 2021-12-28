@@ -1,3 +1,5 @@
+import Paciente from "./Paciente";
+
 const db = require('../db')
 
 class PacienteBD{
@@ -13,6 +15,22 @@ class PacienteBD{
         const rows = result.rows;
 
         return rows || [];
+    }
+
+    async inserePaciente(paciente:Paciente){
+        let values = [paciente.getCodigo(),paciente.getAltura(),paciente.getTipoSanguineo(),paciente.getPeso()];
+        
+        const query = 'insert into Paciente (codigo,altura,tipoSanguineo,peso) values ($1,$2,$3,$4);';
+        
+        try{
+            await db.query(query,values);
+           
+            return `Paciente: ${paciente.getNome()}, cadastrado na base de dados!`;
+        }catch(erro){
+            
+            throw erro
+        }
+        
     }
 }
 

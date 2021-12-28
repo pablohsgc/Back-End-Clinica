@@ -13,10 +13,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
+const CadastraPaciente_1 = __importDefault(require("../Models/CadastraPaciente"));
+const Paciente_1 = __importDefault(require("../Models/Paciente"));
 const PacienteBD_1 = __importDefault(require("../Models/PacienteBD"));
 const pacienteRoute = (0, express_1.Router)();
 pacienteRoute.get('/pacientes', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const pacientes = yield PacienteBD_1.default.pacientes();
     res.send(pacientes);
+}));
+pacienteRoute.post('/pacientes/cadastraPaciente', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    let { nome, email, telefone, cep, logradouro, bairro, cidade, estado, peso, altura, tipoSanguineo } = req.body;
+    let paciente = new Paciente_1.default(nome, 0, email, telefone, cep, logradouro, bairro, cidade, estado, peso, altura, tipoSanguineo);
+    let retorno = "";
+    yield CadastraPaciente_1.default.cadastraPaciente(paciente);
+    /*try{
+         retorno = await CadastraPaciente.cadastraPaciente(paciente);
+     }catch(erro){
+         retorno = "Paciente não pode ser cadastrado";
+         console.log(erro);
+     }*/
+    res.send({ "Mensagem": retorno });
 }));
 exports.default = pacienteRoute;

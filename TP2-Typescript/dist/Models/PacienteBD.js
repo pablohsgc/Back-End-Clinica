@@ -21,5 +21,21 @@ class PacienteBD {
             return rows || [];
         });
     }
+    inserePaciente(paciente) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let values = [paciente.getCodigo(), paciente.getAltura(), paciente.getTipoSanguineo(), paciente.getPeso()];
+            console.log(values);
+            const query = 'insert into Paciente (codigo,altura,tipoSanguineo,peso) values ($1,$2,$3,$4);';
+            try {
+                const result = yield db.query(query, values);
+                const { rows } = result.rows;
+                console.log("Paciente inserido");
+                return `Paciente:${paciente.getNome()}, cadastrado na base de dados!`;
+            }
+            catch (erro) {
+                throw erro;
+            }
+        });
+    }
 }
 exports.default = new PacienteBD();

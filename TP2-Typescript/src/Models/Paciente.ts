@@ -1,6 +1,6 @@
 import Pessoa from "./Pessoa";
 
-export class Paciente extends Pessoa{
+export default class Paciente extends Pessoa{
     private peso:Number;
     private altura:Number;
     private tipoSanguineo:String;

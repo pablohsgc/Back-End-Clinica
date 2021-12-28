@@ -9,6 +9,8 @@ const funcionariosRoute_1 = __importDefault(require("./Routes/funcionariosRoute"
 const medicosRoute_1 = __importDefault(require("./Routes/medicosRoute"));
 const app = (0, express_1.default)();
 const PORT = 3000 || process.env.PORT;
+app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
 app.get('/', (req, res) => {
     res.send('Backend da aplicação rodando na porta ' + PORT);
 });

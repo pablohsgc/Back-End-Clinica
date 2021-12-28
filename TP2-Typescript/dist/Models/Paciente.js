@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Paciente = void 0;
 const Pessoa_1 = __importDefault(require("./Pessoa"));
 class Paciente extends Pessoa_1.default {
     constructor(nome, codigo, email, telefone, cep, logradouro, bairro, cidade, estado, peso, altura, tipoSanguineo) {
@@ -31,4 +30,4 @@ class Paciente extends Pessoa_1.default {
         this.tipoSanguineo = tipoSanguineo;
     }
 }
-exports.Paciente = Paciente;
+exports.default = Paciente;
