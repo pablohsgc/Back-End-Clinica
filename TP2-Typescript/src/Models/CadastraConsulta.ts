@@ -1,11 +1,32 @@
+import AgendaBD from "./AgendaBD";
+import Agenda from "./Agenda";
+
 export default class CadastraConsulta {
     constructor() {
 
     }
 
-    cadastraConsulta() {
+    async cadastraConsulta(consulta: Agenda) {
+        let agenda = new Agenda(
+            consulta.getCodigo(),
+            consulta.getData(),
+            consulta.getHorario(),
+            consulta.getNome(),
+            consulta.getEmail(),
+            consulta.getTelefone(),
+            consulta.getCodigoMedico(),
+        );
 
+        try {
+
+            return await AgendaBD.inserirConsulta(agenda);
+
+        } catch (erro) {
+
+            throw erro;
+        }
     }
+
 }
 
 
