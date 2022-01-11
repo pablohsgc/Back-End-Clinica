@@ -26,6 +26,11 @@ medicosRoute.post('/medicos', async (req:Request, res:Response,next:NextFunction
     res.send({"Mensagem":retorno});
 })
 
+medicosRoute.get('/medicos/especialidades', async (req:Request, res:Response,next:NextFunction) =>{
+    const especialidades = await MedicoBD.especialidades();
+    res.send(especialidades);
+})
+
 
 export default medicosRoute;
 

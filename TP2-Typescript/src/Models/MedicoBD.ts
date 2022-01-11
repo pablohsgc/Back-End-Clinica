@@ -31,6 +31,19 @@ class MedicoBD{
             throw erro
         }
     }
+
+    async especialidades(){
+        const query = 'select distinct especialidade from medico';
+        
+        try{
+            const {rows} = await db.query(query);
+            
+            return rows;
+        }catch(erro){
+            
+            throw erro
+        }
+    }
 }
 
 export default new MedicoBD();
