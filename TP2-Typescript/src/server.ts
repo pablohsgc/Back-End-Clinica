@@ -2,9 +2,10 @@ import express from 'express';
 import pacientesRoute from './Routes/pacientesRoute';
 import funcionariosRoute from './Routes/funcionariosRoute';
 import medicosRoute from './Routes/medicosRoute';
+import enderecosRoute from './Routes/enderecosRoute';
 
 const app = express();
-const PORT = 3000 || process.env.PORT;
+const PORT = 5000 || process.env.PORT;
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true}));
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 app.use(pacientesRoute);
 app.use(funcionariosRoute);
 app.use(medicosRoute);
+app.use(enderecosRoute);
 
 // Server setup
 app.listen(PORT,() => {

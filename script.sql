@@ -45,7 +45,19 @@ create table Agenda(
     FOREIGN KEY (codigo) REFERENCES Medico (codigo)
 );
 
+create table Endereco(
+    cep varchar(8) primary key,
+    logradouro varchar(50),
+    bairro varchar(50),
+    cidade varchar(50),
+    estado varchar(50)
+);
 
+insert into Endereco (cep,logradouro,bairro,cidade,estado) values ('30260070','Avenida dos Andradas','Santa Efigênia','Belo Horizonte','Minas Gerais');
+insert into Endereco (cep,logradouro,bairro,cidade,estado) values ('30260170','Rua Cardoso','Santa Efigênia','Belo Horizonte','Minas Gerais');
+
+select * from endereco where cep='30260070';
+select * from endereco;
 --Inserts-------------------------
 
 --Inserts em pessoa
