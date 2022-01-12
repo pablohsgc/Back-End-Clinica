@@ -34,15 +34,21 @@ create table Medico(
     FOREIGN KEY (codigo) REFERENCES Funcionario (codigo)
 );
 
+create table HORARIO(
+    hora numeric(2) primary key
+);
+
 create table Agenda(
-    codigo integer primary key,
+    codigo serial primary key,
     dataConsulta date not null,
-    horario varchar(5) not null,
+    horario numeric(2) not null,
     nome varchar(50) not null,
     email varchar(30),
     telefone varchar(20),
-    codigoMedico numeric(11),
-    FOREIGN KEY (codigo) REFERENCES Medico (codigo)
+    codigoMedico integer,
+    FOREIGN KEY (codigoMedico) REFERENCES Medico (codigo),
+    FOREIGN KEY (horario) REFERENCES Horario (hora),
+    CONSTRAINT consulta UNIQUE (dataConsulta,horario,codigoMedico) 
 );
 
 create table Endereco(
@@ -52,6 +58,18 @@ create table Endereco(
     cidade varchar(50),
     estado varchar(50)
 );
+
+insert into Horario values (7);
+insert into Horario values (8);
+insert into Horario values (9);
+insert into Horario values (10);
+insert into Horario values (11);
+insert into Horario values (12);
+insert into Horario values (13);
+insert into Horario values (14);
+insert into Horario values (15);
+insert into Horario values (16);
+insert into Horario values (17);
 
 insert into Endereco (cep,logradouro,bairro,cidade,estado) values ('30260070','Avenida dos Andradas','Santa Efigênia','Belo Horizonte','Minas Gerais');
 insert into Endereco (cep,logradouro,bairro,cidade,estado) values ('30260170','Rua Cardoso','Santa Efigênia','Belo Horizonte','Minas Gerais');
