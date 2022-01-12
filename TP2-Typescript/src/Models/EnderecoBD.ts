@@ -21,7 +21,7 @@ class EnderecoBD {
         }
     }
 
-    async buscaEndereco(cep:String){
+    async buscaEndereco(cep:String): Promise<JSON> {
         const values = [cep]
         const query = 'select * from endereco where cep=$1';
 
@@ -35,7 +35,7 @@ class EnderecoBD {
         } 
     }
 
-    async insereEndereco(endereco:Endereco) {
+    async insereEndereco(endereco:Endereco): Promise<String> {
         let values = [
             endereco.getCep(),
             endereco.getLogradouro(),
