@@ -18,7 +18,6 @@ class AgendaBD {
 
     async inserirConsulta(consulta: Agenda) {
         let values = [
-            consulta.getCodigo(),
             consulta.getData(),
             consulta.getHorario(),
             consulta.getNome(),
@@ -26,7 +25,7 @@ class AgendaBD {
             consulta.getTelefone(),
             consulta.getCodigoMedico(),
         ];
-        const query = 'insert into Agenda values ($1,$2,$3,$4,$5,$6,$7) RETURNING codigo';
+        const query = 'insert into Agenda (dataConsulta, horario, nome, email, telefone, codigoMedico) values ($1,$2,$3,$4,$5,$6) RETURNING codigo';
 
         try {
             const { rows } = await db.query(query, values);

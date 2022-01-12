@@ -18,7 +18,7 @@ agendamentosRoute.post('/agendamentos', async (req: Request, res: Response, next
     let cadastraConsulta = new CadastraConsulta();
     try {
         let codigo = await cadastraConsulta.cadastraConsulta(consulta);
-        retorno = "Cunsulta de " + nome + " na data " + data + " no horário " + horario + " cadastrada!"
+        retorno = "Cunsulta de " + nome + " na data " + data + " às " + horario + " horas cadastrada!"
     } catch (erro) {
         console.log(erro);
         retorno = "Consulta não pode ser cadastrada!";
