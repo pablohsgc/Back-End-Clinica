@@ -6,7 +6,7 @@ import CadastraConsulta from "../Models/CadastraConsulta";
 
 const agendamentosRoute = Router();
 
-agendamentosRoute.get('/medicos', async (req: Request, res: Response, next: NextFunction) => {
+agendamentosRoute.get('/agendamentos', async (req: Request, res: Response, next: NextFunction) => {
     const agendamentos = await AgendaBD.agendamentos();
     res.send(agendamentos);
 })
