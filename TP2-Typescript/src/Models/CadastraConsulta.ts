@@ -7,22 +7,9 @@ export default class CadastraConsulta {
     }
 
     async cadastraConsulta(consulta: Agenda) {
-        let agenda = new Agenda(
-            consulta.getCodigo(),
-            consulta.getData(),
-            consulta.getHorario(),
-            consulta.getNome(),
-            consulta.getEmail(),
-            consulta.getTelefone(),
-            consulta.getCodigoMedico(),
-        );
-
         try {
-
-            return await AgendaBD.inserirConsulta(agenda);
-
+            return await AgendaBD.inserirConsulta(consulta);
         } catch (erro) {
-
             throw erro;
         }
     }
