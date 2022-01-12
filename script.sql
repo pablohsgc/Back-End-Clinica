@@ -118,6 +118,18 @@ select * from Pessoa P join Medico M on P.codigo=M.codigo join Funcionario F on 
 --Inserts em Agenda
 insert into Agenda (dataConsulta, horario, nome, email, telefone, codigoMedico) values ($1,$2,$3,$4,$5,$6) RETURNING codigo;
 
+select hora,dataconsulta,codigo,nome,codigomedico from agenda a right join horario h on a.horario = h.hora and a.dataconsulta='2021-02-21' and a.codigoMedico=44;
+-- projecao da agenda de um medico para uma determinada data
+
+select * from agenda a where a.dataconsulta='2021-02-21' and a.codigoMedico=44;
+-- projecao de todas as consultas de um medico em uma determinada data
+
+select h.hora from horario h except select a.horario from agenda a where a.dataconsulta='2021-02-21' and a.codigoMedico=44;
+-- projecao de todos os horarios disponiveis de um medico em uma data
+
+select h.hora from horario h except (select a.horario from agenda a where a.dataconsulta='2021-02-21' and a.codigoMedico=44) ORDER BY hora; 
+-- mesma projecao da anterior porem de forma ordenada
+
 drop table pessoa cascade;
 drop table paciente cascade ;
 drop table funcionario cascade ;
