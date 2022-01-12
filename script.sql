@@ -115,6 +115,8 @@ select * from  PESSOA P join Funcionario F on P.codigo=F.codigo; --projecao util
 
 select * from Pessoa P join Medico M on P.codigo=M.codigo join Funcionario F on P.codigo=F.codigo; -- projecao utilizando a juncao com medico, pessoa e funcionario
 
+--Inserts em Agenda
+insert into Agenda (dataConsulta, horario, nome, email, telefone, codigoMedico) values ($1,$2,$3,$4,$5,$6) RETURNING codigo;
 
 drop table pessoa cascade;
 drop table paciente cascade ;

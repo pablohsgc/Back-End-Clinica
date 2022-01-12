@@ -7,7 +7,14 @@
 ## Funcionamento do BackEnd
 ### Rotas
 #### **get:** /agendamentos
-    Essa rota serve para listar os agendamentos.
+    - Essa rota serve para listar e cadastrar os agendamentos.
+    - Para o cadastro são necessários os seguintes parametros que devem ser enviados em um json pelo método post:
+        - data (mês-dia-ano)
+        - horario (apenas a hora, sem minutos)
+        - nome
+        - email
+        - telefone
+        - codigoMedico
 #### **get:** /funcionarios
     Essa rota serve para listar os funcionarios cadastrados no banco de dados.
 #### **post:** /funcionarios
