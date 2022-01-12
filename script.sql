@@ -93,6 +93,8 @@ insert into Funcionario values (1,current_date,3200,'asdasd');
 insert into Funcionario values (2,current_date,1000,'asdasd');
 insert into Funcionario values (3,current_date,2200,'asdasd');
 
+insert into Funcionario values (56,TO_DATE('31-05-2019','DD-MM-YYYY'),2200,'asdasd'); -- convertendo o formato da data, para o formato do banco de dados.
+
 select * from funcionario;
 
 select * from  PESSOA P join FUNCIONARIO F on P.codigo=F.codigo;
