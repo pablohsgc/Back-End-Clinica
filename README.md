@@ -15,6 +15,12 @@
         - email
         - telefone
         - codigoMedico
+    - Para ver os agendamentos de um determinado médico, os seguintes parametros que devem ser enviados em um json pelo método post:
+        - codigoMedico
+        - data (ano-mes-dia)
+    - Para ver os horários livres de um determinado médico, os seguintes parametros que devem ser enviados em um json pelo método post:
+        - codigoMedico
+        - data (ano-mes-dia)
 #### **get:** /funcionarios
     Essa rota serve para listar os funcionarios cadastrados no banco de dados.
 #### **post:** /funcionarios
