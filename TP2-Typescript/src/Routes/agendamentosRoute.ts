@@ -26,4 +26,28 @@ agendamentosRoute.post('/agendamentos', async (req: Request, res: Response, next
     res.send({ "Mensagem": retorno });
 })
 
+agendamentosRoute.post('/agendamentos/consultasMarcadas', async (req: Request, res: Response, next: NextFunction) => {
+    let { codigoMedico, data } = req.body;
+    let retorno;
+    try {
+        retorno = await AgendaBD.agendamentosMedico(codigoMedico, data);
+    } catch (erro) {
+        retorno = { "Erro ao retornar os dados!": erro }
+    }
+
+    res.send(retorno);
+})
+
+agendamentosRoute.post('/agendamentos/horariosLivres', async (req: Request, res: Response, next: NextFunction) => {
+    let { codigoMedico, data } = req.body;
+    let retorno;
+    try {
+        retorno = await AgendaBD.horariosDisponiveis(codigoMedico, data);
+    } catch (erro) {
+        retorno = { "Erro ao retornar os dados!": erro }
+    }
+
+    res.send(retorno);
+})
+
 export default agendamentosRoute;

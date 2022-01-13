@@ -1,3 +1,4 @@
+import { brotliDecompress } from "zlib";
 import Agenda from "./Agenda";
 const db = require('../db')
 
@@ -16,7 +17,7 @@ class AgendaBD {
         return rows || [];
     }
 
-    async inserirConsulta(consulta: Agenda) {
+    async inserirConsulta(consulta: Agenda): Promise<Number> {
         let values = [
             consulta.getData(),
             consulta.getHorario(),
@@ -35,12 +36,33 @@ class AgendaBD {
         }
     }
 
-    async agendamentosMedico() {
+    async agendamentosMedico(codigoMedico: Number, data: Date): Promise<JSON> {
+        const values = [data, codigoMedico];
+        console.log("VALORES ", values);
+        const query = "select * from agenda a where a.dataconsulta=$1 and a.codigoMedico=$2;";
 
+        try {
+            const { rows } = await db.query(query, values);
+
+            return rows;
+
+        } catch (erro) {            
+            throw erro;
+        }
     }
 
-    async horariosDisponiveis(data: Date) {
+    async horariosDisponiveis(codigoMedico: Number, data: Date): Promise<JSON> {
+        const values = [data, codigoMedico];        
+        const query = "select h.hora from horario h except (select a.horario from agenda a where a.dataconsulta=$1 and a.codigoMedico=$2) ORDER BY hora; ";
 
+        try {
+            const { rows } = await db.query(query, values);
+
+            return rows;
+
+        } catch (erro) {            
+            throw erro;
+        }
     }
 }
 
