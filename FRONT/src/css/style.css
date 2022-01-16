@@ -1,0 +1,23 @@
+.footer {
+    color: #31708f;
+    background-color: #bce8f1;
+    border-color: transparent;
+    padding: 1%;
+
+}
+.alert-info{
+    color: #31708f;
+    background-color: #bce8f1;
+    border-color: transparent;
+    text-align: center;
+}
+
+.container{
+    padding: 1%;
+}
+
+.imagens-galeria{
+    height: 350px;
+    width: 350px;
+    padding: 5%;
+}
