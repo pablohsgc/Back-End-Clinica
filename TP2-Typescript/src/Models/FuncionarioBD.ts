@@ -31,6 +31,24 @@ class FuncionarioBD{
             throw erro
         }
     }
+
+    async buscaFuncionario(email:String){
+        let values = [email];
+
+        const query = 'select * from  PESSOA P join FUNCIONARIO F on P.codigo=F.codigo where P.email=$1';
+
+        try{
+            const {rows} = await db.query(query,values);
+            
+            if(rows.length == 0) 
+                throw "Usuario não existe!";
+            
+            return rows[0];
+        }catch(erro){
+            
+            throw erro
+        }        
+    }
 }
 
 export default new FuncionarioBD();

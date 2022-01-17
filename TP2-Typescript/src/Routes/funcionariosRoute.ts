@@ -3,15 +3,16 @@ import { Request,Response,NextFunction } from "express";
 import CadastraFuncionario from "../Models/CadastraFuncionario";
 import Funcionario from "../Models/Funcionario";
 import FuncionarioBD from "../Models/FuncionarioBD";
+import verificaJWT from "../middleware/verificaJWT";
 
 const funcionariosRoute = Router();
 
-funcionariosRoute.get('/funcionarios', async (req:Request, res:Response,next:NextFunction) =>{
+funcionariosRoute.get('/funcionarios', verificaJWT, async (req:Request, res:Response,next:NextFunction) =>{
     const funcionarios = await FuncionarioBD.funcionarios();
     res.send(funcionarios);
 })
 
-funcionariosRoute.post('/funcionarios', async (req:Request, res:Response,next:NextFunction) =>{
+funcionariosRoute.post('/funcionarios', verificaJWT, async (req:Request, res:Response,next:NextFunction) =>{
     let {nome,email,telefone,cep,logradouro,bairro,cidade,estado,dataContrato,salario,senhaHash} = req.body;
     let funcionario = new Funcionario(nome,0,email,telefone,cep,logradouro,bairro,cidade,estado,dataContrato,salario,senhaHash);
     let retorno = "";

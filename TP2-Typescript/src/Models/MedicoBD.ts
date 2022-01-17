@@ -44,6 +44,25 @@ class MedicoBD{
             throw erro
         }
     }
+
+    async contemMedico(codigo:Number): Promise<Boolean>{
+        const values = [codigo];
+
+        const query = 'select codigo from medico where codigo=$1';
+        
+        try{
+            const {rows} = await db.query(query,values);
+            
+            if(rows.length > 0){
+                return true
+            }
+
+            return false;
+        }catch(erro){
+            
+            throw erro
+        }
+    }
 }
 
 export default new MedicoBD();

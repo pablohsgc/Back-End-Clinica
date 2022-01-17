@@ -3,10 +3,11 @@ import { Request, Response, NextFunction } from "express";
 import Agenda from "../Models/Agenda";
 import AgendaBD from "../Models/AgendaBD";
 import CadastraConsulta from "../Models/CadastraConsulta";
+import verificaJWT from "../middleware/verificaJWT";
 
 const agendamentosRoute = Router();
 
-agendamentosRoute.get('/agendamentos', async (req: Request, res: Response, next: NextFunction) => {
+agendamentosRoute.get('/agendamentos', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
     const agendamentos = await AgendaBD.agendamentos();
     res.send(agendamentos);
 })
@@ -16,9 +17,10 @@ agendamentosRoute.post('/agendamentos', async (req: Request, res: Response, next
     let consulta = new Agenda(codigo, data, horario, nome, email, telefone, codigoMedico);
     let retorno = "";
     let cadastraConsulta = new CadastraConsulta();
+
     try {
         let codigo = await cadastraConsulta.cadastraConsulta(consulta);
-        retorno = "Cunsulta de " + nome + " na data " + data + " às " + horario + " horas cadastrada!"
+        retorno = "Consulta de " + nome + " na data " + data + " às " + horario + " horas cadastrada!"
     } catch (erro) {
         console.log(erro);
         retorno = "Consulta não pode ser cadastrada!";
@@ -26,7 +28,7 @@ agendamentosRoute.post('/agendamentos', async (req: Request, res: Response, next
     res.send({ "Mensagem": retorno });
 })
 
-agendamentosRoute.post('/agendamentos/consultasMarcadas', async (req: Request, res: Response, next: NextFunction) => {
+agendamentosRoute.post('/agendamentos/consultasMarcadas', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
     let { codigoMedico, data } = req.body;
     let retorno;
     try {
@@ -38,7 +40,7 @@ agendamentosRoute.post('/agendamentos/consultasMarcadas', async (req: Request, r
     res.send(retorno);
 })
 
-agendamentosRoute.post('/agendamentos/horariosLivres', async (req: Request, res: Response, next: NextFunction) => {
+agendamentosRoute.post('/agendamentos/horariosLivres', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
     let { codigoMedico, data } = req.body;
     let retorno;
     try {

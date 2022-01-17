@@ -3,6 +3,7 @@ import { Request, Response, NextFunction } from "express";
 import CadastraMedico from "../Models/CadastraMedico";
 import Medico from "../Models/Medico";
 import MedicoBD from "../Models/MedicoBD";
+import verificaJWT from "../middleware/verificaJWT";
 
 const medicosRoute = Router();
 
@@ -11,7 +12,7 @@ medicosRoute.get('/medicos', async (req: Request, res: Response, next: NextFunct
     res.send(funcionarios);
 })
 
-medicosRoute.post('/medicos', async (req: Request, res: Response, next: NextFunction) => {
+medicosRoute.post('/medicos', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
     let { nome, email, telefone, cep, logradouro, bairro, cidade, estado, dataContrato, salario, senhaHash, especialidade, crm } = req.body;
     let funcionario = new Medico(nome, 0, email, telefone, cep, logradouro, bairro, cidade, estado, dataContrato, salario, senhaHash, especialidade, crm);
     let retorno = "";
