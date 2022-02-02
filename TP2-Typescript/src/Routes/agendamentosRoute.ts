@@ -29,10 +29,10 @@ agendamentosRoute.post('/agendamentos', async (req: Request, res: Response, next
 })
 
 agendamentosRoute.post('/agendamentos/consultasMarcadas', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
-    let { codigoMedico, data } = req.body;
+    let { codigo, data } = req.body;
     let retorno;
     try {
-        retorno = await AgendaBD.agendamentosMedico(codigoMedico, data);
+        retorno = await AgendaBD.agendamentosMedico(codigo, data);
     } catch (erro) {
         retorno = { "Erro ao retornar os dados!": erro }
     }
