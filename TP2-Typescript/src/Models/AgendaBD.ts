@@ -38,7 +38,6 @@ class AgendaBD {
 
     async agendamentosMedico(codigoMedico: Number, data: Date): Promise<JSON> {
         const values = [data, codigoMedico];
-        console.log("VALORES ", values);
         const query = "select * from agenda a where a.dataconsulta=$1 and a.codigoMedico=$2;";
 
         try {
@@ -46,13 +45,13 @@ class AgendaBD {
 
             return rows;
 
-        } catch (erro) {            
+        } catch (erro) {
             throw erro;
         }
     }
 
     async horariosDisponiveis(codigoMedico: Number, data: Date): Promise<JSON> {
-        const values = [data, codigoMedico];        
+        const values = [data, codigoMedico];
         const query = "select h.hora from horario h except (select a.horario from agenda a where a.dataconsulta=$1 and a.codigoMedico=$2) ORDER BY hora; ";
 
         try {
@@ -60,7 +59,7 @@ class AgendaBD {
 
             return rows;
 
-        } catch (erro) {            
+        } catch (erro) {
             throw erro;
         }
     }
