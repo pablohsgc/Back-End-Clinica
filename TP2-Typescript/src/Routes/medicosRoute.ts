@@ -32,5 +32,13 @@ medicosRoute.get('/medicos/especialidades', async (req: Request, res: Response, 
     res.send(especialidades);
 })
 
+medicosRoute.get('/medicos/especialista/:especialidade', async (req: Request, res: Response, next: NextFunction) => {
+    const especialidade = req.params.especialidade;
+    if(!especialidade)
+        console.log("Sem especialidade")
+    const especialidades = await MedicoBD.medicosPorEspecialidade(especialidade);
+    res.send(especialidades);
+})
+
 export default medicosRoute;
 

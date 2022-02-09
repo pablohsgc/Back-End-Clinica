@@ -63,6 +63,21 @@ class MedicoBD{
             throw erro
         }
     }
+
+    async medicosPorEspecialidade(especialidade:String){
+        const values = [especialidade];
+
+        const query = 'select * from medico m join pessoa p on m.codigo=p.codigo where especialidade=$1';
+        
+        try{
+            const {rows} = await db.query(query,values);
+
+            return rows;
+        }catch(erro){
+            
+            throw erro
+        }
+    }
 }
 
 export default new MedicoBD();

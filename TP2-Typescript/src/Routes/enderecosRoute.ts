@@ -18,7 +18,7 @@ enderecosRoute.get('/enderecos/:cep', async (req: Request, res: Response, next: 
     try {
         retorno = await EnderecoBD.buscaEndereco(cep);
     } catch (erro) {
-        retorno = { "Erro": erro.detail }
+        retorno = { "Erro": (<any>erro).detail }
     }
 
     res.send(retorno);

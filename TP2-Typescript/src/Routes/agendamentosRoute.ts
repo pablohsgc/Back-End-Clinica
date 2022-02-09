@@ -25,7 +25,7 @@ agendamentosRoute.post('/agendamentos', async (req: Request, res: Response, next
         console.log(erro);
         retorno = "Consulta não pode ser cadastrada!";
     }
-    res.send({ "Mensagem": retorno });
+    res.send({ "mensagem": retorno });
 })
 
 agendamentosRoute.post('/agendamentos/consultasMarcadas', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
