@@ -39,7 +39,7 @@ class AgendaBD {
 
             return rows[0].codigo;
         } catch (erro) {
-
+            console.log(erro)
             throw (<any>erro).detail;
         }
     }
