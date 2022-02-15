@@ -2,7 +2,7 @@
 create table Pessoa(
     codigo serial primary key,
     nome varchar(50) not null,
-    email varchar(50) not null,
+    email varchar(50) UNIQUE not null,
     telefone varchar(20) not null,
     cep varchar(8) not null,
     logradouro varchar(50) not null,
@@ -79,19 +79,19 @@ select * from endereco;
 --Inserts-------------------------
 
 --Inserts em pessoa
-insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Pablo Henrique','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
-insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Jose silva','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
-insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Ricardo','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
-insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Ana Gabriela','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
-insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Cario Oliveira','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
-insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Renan Lima','email@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Pablo Henrique','email1@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Jose silva','email2@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Ricardo','email3@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Ana Gabriela','email4@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Cario Oliveira','email5@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
+insert into Pessoa (nome,email,telefone,cep,logradouro,bairro,cidade,estado) values ('Renan Lima','email6@gmail.com','99999999999','88888888','rua qualquer','bairro qualquer','belo horizonte','minas gerais');
 
 select * from Pessoa;
 
 --Inserts em funcionario
-insert into Funcionario values (1,current_date,3200,'asdasd');
-insert into Funcionario values (2,current_date,1000,'asdasd');
-insert into Funcionario values (3,current_date,2200,'asdasd');
+insert into Funcionario values (1,current_date,3200,'senha123');
+insert into Funcionario values (2,current_date,1000,'senha123');
+insert into Funcionario values (3,current_date,2200,'senha123');
 
 -- insert into Funcionario values (56,TO_DATE('31-05-2019','DD-MM-YYYY'),2200,'asdasd'); -- convertendo o formato da data, para o formato do banco de dados.
 
@@ -137,3 +137,5 @@ drop table paciente cascade ;
 drop table funcionario cascade ;
 drop table medico cascade ;
 drop table agenda cascade ;
+drop table horario cascade ;
+drop table endereco cascade ;
