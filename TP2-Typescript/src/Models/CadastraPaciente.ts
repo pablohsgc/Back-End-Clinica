@@ -1,7 +1,7 @@
+import CadastraPessoa from "./CadastraPessoa";
 import Paciente from "./Paciente";
 import PacienteBD from "./PacienteBD";
 import Pessoa from "./Pessoa";
-import PessoaBD from "./PessoaBD";
 
 class CadastraPaciente{
     constructor(){
@@ -22,7 +22,9 @@ class CadastraPaciente{
         ); 
         
         try{
-            let codigoPessoa = await PessoaBD.inserePessoa(pessoa);
+            this.verificaValidezPaciente(paciente);
+            
+            let codigoPessoa = await CadastraPessoa.cadastraPessoa(pessoa);
             
             paciente.setCodigo(codigoPessoa);
 
@@ -31,6 +33,13 @@ class CadastraPaciente{
             
             throw erro
         }
+    }
+
+    verificaValidezPaciente(paciente:Paciente){
+        if( paciente.getAltura() <= 0 ||
+            paciente.getPeso() <= 0 ||
+            paciente.getTipoSanguineo() === "")
+            throw "Dados do paciente devem ser preenchidos corretamente!";
     }
 }
 

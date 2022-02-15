@@ -1,7 +1,8 @@
+import CadastraPessoa from "./CadastraPessoa";
 import Funcionario from "./Funcionario";
 import FuncionarioBD from "./FuncionarioBD";
 import Pessoa from "./Pessoa";
-import PessoaBD from "./PessoaBD";
+
 
 class CadastraFuncionario{
     constructor(){
@@ -22,7 +23,7 @@ class CadastraFuncionario{
         ); 
         
         try{
-            let codigoPessoa = await PessoaBD.inserePessoa(pessoa);
+            let codigoPessoa = await CadastraPessoa.cadastraPessoa(pessoa);
             
             funcionario.setCodigo(codigoPessoa);
             
@@ -31,6 +32,13 @@ class CadastraFuncionario{
             
             throw erro;
         }
+    }
+
+    verificaValidezFuncionario(funcionario:Funcionario){
+        if( funcionario.getSalario() <= 0 ||
+            funcionario.getDataContrato().getTime() <= 0 ||
+            funcionario.getSenhaHash() === "")
+            throw "Dados do funcionario devem ser preenchidos corretamente!"
     }
 }
 

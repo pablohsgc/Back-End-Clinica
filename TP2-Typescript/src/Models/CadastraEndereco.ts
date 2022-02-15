@@ -16,6 +16,15 @@ class CadastraEndereco{
             throw erro;
         }
     }
+
+    verificaValidezEndereco(endereco:Endereco){
+        if( endereco.getBairro() === "" ||
+            endereco.getCep() === "" ||
+            endereco.getCidade() === "" ||
+            endereco.getEstado() === "" ||
+            endereco.getLogradouro() === "")
+            throw "Todos os dados do email devem ser preenchidos!"
+    }
 }
 
 export default new CadastraEndereco();

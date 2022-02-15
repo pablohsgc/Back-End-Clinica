@@ -25,6 +25,8 @@ class CadastraMedico{
         ); 
         
         try{
+            this.verificaValidezMedico(medico);
+            
             let codigoPessoa = await CadastraFuncionario.cadastraFuncionario(funcionario)
             
             medico.setCodigo(codigoPessoa);
@@ -34,6 +36,12 @@ class CadastraMedico{
             
             throw erro
         }
+    }
+
+    verificaValidezMedico(medico:Medico){
+        if( medico.getCRM() <= 0 ||
+            medico.getEspecialidade() === "")
+            throw "Dados do médico devem ser preenchidos corretamente!"
     }
 }
 
