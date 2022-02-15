@@ -8,24 +8,33 @@ import verificaJWT from "../middleware/verificaJWT";
 const funcionariosRoute = Router();
 
 funcionariosRoute.get('/funcionarios', verificaJWT, async (req:Request, res:Response,next:NextFunction) =>{
-    const funcionarios = await FuncionarioBD.funcionarios();
-    res.send(funcionarios);
+    let retorno = null;
+    
+    try{
+        retorno = await FuncionarioBD.funcionarios();
+        
+    }catch(erro){
+        retorno = {"erro" : erro};
+    }
+
+    res.send(retorno);
 })
 
 funcionariosRoute.post('/funcionarios', verificaJWT, async (req:Request, res:Response,next:NextFunction) =>{
     let {nome,email,telefone,cep,logradouro,bairro,cidade,estado,dataContrato,salario,senhaHash} = req.body;
     let funcionario = new Funcionario(nome,0,email,telefone,cep,logradouro,bairro,cidade,estado,dataContrato,salario,senhaHash);
-    let retorno = "";
+    let retorno = null;
     
     try{
         let codigo = await CadastraFuncionario.cadastraFuncionario(funcionario);
-        retorno = "Funcionario: " + nome + ", foi cadastrado com o código: " + codigo;
+
+        retorno = { "mensagem": "Funcionario: " + nome + ", foi cadastrado com o código: " + codigo};
     }catch(erro){
-        console.log(erro)
-        retorno = "Funcionario não pode ser cadastrado!";
+       
+        retorno = { "erro" : "Funcionario não pode ser cadastrado! " + erro};
     }
 
-    res.send({"Mensagem":retorno});
+    res.send(retorno);
 })
 
 export default funcionariosRoute;

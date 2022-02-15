@@ -8,23 +8,30 @@ import verificaJWT from "../middleware/verificaJWT";
 const pacienteRoute = Router();
 
 pacienteRoute.get('/pacientes', verificaJWT, async (req:Request, res:Response,next:NextFunction) =>{
-    const pacientes = await PacienteBD.pacientes();
-    res.send(pacientes);
+    let retorno = null;
+    
+    try{
+        retorno = await PacienteBD.pacientes();
+    }catch(erro){
+        retorno = { "erro" : erro };
+    }
+    
+    res.send(retorno);
 })
 
 pacienteRoute.post('/pacientes', verificaJWT, async (req:Request, res:Response,next:NextFunction) => {
     let {nome,email,telefone,cep,logradouro,bairro,cidade,estado,peso,altura,tipoSanguineo} = req.body;
     let paciente = new Paciente(nome,0,email,telefone,cep,logradouro,bairro,cidade,estado,peso,altura,tipoSanguineo);
-    let retorno = "";
+    let retorno = null;
     
     try{
         let codigo = await CadastraPaciente.cadastraPaciente(paciente);
-        retorno = "Paciente: " + nome + ", cadastrado com o codigo: " + codigo;
+        retorno = { "mensagem" : "Paciente: " + nome + ", cadastrado com o codigo: " + codigo};
     }catch(erro){
-        retorno = "Paciente não pode ser cadastrado!";
+        retorno = {"erro" : "Paciente não pode ser cadastrado! " + erro};
     }
 
-    res.send({"Mensagem":retorno});
+    res.send(retorno);
 })
 
 export default pacienteRoute;

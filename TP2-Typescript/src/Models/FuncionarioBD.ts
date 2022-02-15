@@ -8,13 +8,18 @@ class FuncionarioBD{
     }
 
     async funcionarios(){
-        const query = 'select * from PESSOA P join Funcionario F on P.codigo=F.codigo;';
-        
-        const result = await db.query(query);
+        try{
+            const query = 'select * from PESSOA P join Funcionario F on P.codigo=F.codigo;';
+            
+            const result = await db.query(query);
 
-        const rows = result.rows;
+            const rows = result.rows;
 
-        return rows || [];
+            return rows || [];
+
+        }catch(erro){
+            throw (<any>erro).detail;
+        }
     }
 
     async insereFuncionario(funcionario:Funcionario){
@@ -28,7 +33,7 @@ class FuncionarioBD{
             return rows[0].codigo;
         }catch(erro){
             
-            throw erro
+            throw (<any>erro).detail;
         }
     }
 
@@ -46,7 +51,7 @@ class FuncionarioBD{
             return rows[0];
         }catch(erro){
             
-            throw erro
+            throw (<any>erro).detail;
         }        
     }
 }

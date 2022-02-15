@@ -8,13 +8,18 @@ class MedicoBD{
     }
 
     async medicos(){
-        const query = 'select * from Pessoa P join Medico M on P.codigo=M.codigo join Funcionario F on P.codigo=F.codigo;';
-        
-        const result = await db.query(query);
+        try{
+            const query = 'select * from Pessoa P join Medico M on P.codigo=M.codigo join Funcionario F on P.codigo=F.codigo;';
+            
+            const result = await db.query(query);
 
-        const rows = result.rows;
+            const rows = result.rows;
 
-        return rows || [];
+            return rows || [];
+        }catch(erro){
+
+            throw (<any>erro).detail;
+        }
     }
 
     async insereMedico(medico:Medico){
@@ -28,7 +33,7 @@ class MedicoBD{
             return rows[0].codigo;
         }catch(erro){
             
-            throw erro
+            throw (<any>erro).detail;
         }
     }
 
@@ -41,7 +46,7 @@ class MedicoBD{
             return rows;
         }catch(erro){
             
-            throw erro
+            throw (<any>erro).detail;
         }
     }
 
@@ -60,7 +65,7 @@ class MedicoBD{
             return false;
         }catch(erro){
             
-            throw erro
+            throw (<any>erro).detail;
         }
     }
 
@@ -75,7 +80,7 @@ class MedicoBD{
             return rows;
         }catch(erro){
             
-            throw erro
+            throw (<any>erro).detail;
         }
     }
 }

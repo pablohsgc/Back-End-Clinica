@@ -27,7 +27,7 @@ class PessoaBD {
             return rows[0].codigo;
         } catch (erro) {
 
-            throw erro
+            throw (<any>erro).detail;
         }
     }
 }

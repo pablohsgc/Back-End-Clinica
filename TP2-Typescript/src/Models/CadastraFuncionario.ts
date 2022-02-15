@@ -29,7 +29,7 @@ class CadastraFuncionario{
             return await FuncionarioBD.insereFuncionario(funcionario);
         }catch(erro){
             
-            throw erro
+            throw erro;
         }
     }
 }

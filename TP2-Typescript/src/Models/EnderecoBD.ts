@@ -17,21 +17,24 @@ class EnderecoBD {
             return rows;
         } catch (erro) {
 
-            throw erro
+            throw (<any>erro).detail;
         }
     }
 
     async buscaEndereco(cep:String): Promise<JSON> {
-        const values = [cep]
+        const values = [cep];
+
         const query = 'select * from endereco where cep=$1';
 
         try {
             const { rows } = await db.query(query, values);
 
+            if(!rows[0]) throw "Não existe endereço cadastrado neste cep!";
+
             return rows[0];
         } catch (erro) {
 
-            throw erro
+            throw (<any>erro).detail;
         } 
     }
 
@@ -52,7 +55,7 @@ class EnderecoBD {
             return rows[0].cep;
         } catch (erro) {
 
-            throw erro
+            throw (<any>erro).detail;
         }
     }
 }

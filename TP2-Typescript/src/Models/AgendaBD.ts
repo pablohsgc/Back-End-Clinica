@@ -8,13 +8,18 @@ class AgendaBD {
     }
 
     async agendamentos() {
-        const query = 'select * from AGENDA';
+        try{
+            const query = 'select * from AGENDA';
 
-        const result = await db.query(query);
+            const result = await db.query(query);
 
-        const rows = result.rows;
+            const rows = result.rows;
 
-        return rows || [];
+            return rows || [];
+        
+        }catch(erro){
+            throw (<any>erro).detail;
+        }
     }
 
     async inserirConsulta(consulta: Agenda): Promise<Number> {
@@ -26,13 +31,16 @@ class AgendaBD {
             consulta.getTelefone(),
             consulta.getCodigoMedico(),
         ];
+
         const query = 'insert into Agenda (dataConsulta, horario, nome, email, telefone, codigoMedico) values ($1,$2,$3,$4,$5,$6) RETURNING codigo';
 
         try {
             const { rows } = await db.query(query, values);
+
             return rows[0].codigo;
         } catch (erro) {
-            throw erro;
+
+            throw (<any>erro).detail;
         }
     }
 
@@ -46,7 +54,7 @@ class AgendaBD {
             return rows;
 
         } catch (erro) {
-            throw erro;
+            throw (<any>erro).detail;
         }
     }
 
@@ -60,7 +68,8 @@ class AgendaBD {
             return rows;
 
         } catch (erro) {
-            throw erro;
+
+            throw (<any>erro).detail;
         }
     }
 }

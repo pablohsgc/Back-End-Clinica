@@ -10,10 +10,10 @@ class CadastraEndereco{
         try{
             let cepCadastrado = await EnderecoBD.insereEndereco(endereco);
             
-            return await cepCadastrado;
+            return cepCadastrado;
         }catch(erro){
             
-            throw erro
+            throw erro;
         }
     }
 }

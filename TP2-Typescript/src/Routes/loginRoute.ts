@@ -2,7 +2,6 @@ import { Router } from "express";
 import { Request,Response,NextFunction } from "express";
 import FuncionarioBD from "../Models/FuncionarioBD";
 import MedicoBD from "../Models/MedicoBD";
-import verificaJWT from "../middleware/verificaJWT";
 
 const jwt = require('jsonwebtoken');
 
@@ -36,11 +35,6 @@ loginRoute.post('/login', async (req:Request, res:Response,next:NextFunction) =>
     }
 
     res.send(retorno);
-})
-
-loginRoute.get('/teste', verificaJWT, async (req:Request, res:Response,next:NextFunction) =>{
-    const {codigo} = req.body;
-    res.send({"Mensagem":"Sucesso, o codigo é " + codigo});
 })
 
 export default loginRoute;

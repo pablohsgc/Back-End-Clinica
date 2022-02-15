@@ -9,32 +9,42 @@ const agendamentosRoute = Router();
 
 agendamentosRoute.get('/agendamentos', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
     const agendamentos = await AgendaBD.agendamentos();
+    
+    let retorno = null;
+    
+    try{
+        retorno = agendamentos;
+    }catch(erro){
+        retorno = {"erro":erro};
+    }
+
     res.send(agendamentos);
 })
 
 agendamentosRoute.post('/agendamentos', async (req: Request, res: Response, next: NextFunction) => {
     let { codigo, data, horario, nome, email, telefone, codigoMedico } = req.body;
     let consulta = new Agenda(codigo, data, horario, nome, email, telefone, codigoMedico);
-    let retorno = "";
     let cadastraConsulta = new CadastraConsulta();
+    let retorno = null;
 
     try {
-        let codigo = await cadastraConsulta.cadastraConsulta(consulta);
-        retorno = "Consulta de " + nome + " na data " + data + " às " + horario + " horas cadastrada!"
+        await cadastraConsulta.cadastraConsulta(consulta);
+        retorno = {"mensagem":"Consulta de " + nome + " na data " + data + " às " + horario + " horas cadastrada!"};
     } catch (erro) {
-        console.log(erro);
-        retorno = "Consulta não pode ser cadastrada!";
+        retorno = {"erro" : erro};
     }
-    res.send({ "mensagem": retorno });
+
+    res.send(retorno);
 })
 
 agendamentosRoute.post('/agendamentos/consultasMarcadas', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
     let { codigo, data } = req.body;
-    let retorno;
+    let retorno = null;
+
     try {
         retorno = await AgendaBD.agendamentosMedico(codigo, data);
     } catch (erro) {
-        retorno = { "Erro ao retornar os dados!": erro }
+        retorno = { "erro" : erro };
     }
 
     res.send(retorno);
@@ -42,11 +52,12 @@ agendamentosRoute.post('/agendamentos/consultasMarcadas', verificaJWT, async (re
 
 agendamentosRoute.post('/agendamentos/horariosLivres', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
     let { codigoMedico, data } = req.body;
-    let retorno;
+    let retorno = null;
+
     try {
         retorno = await AgendaBD.horariosDisponiveis(codigoMedico, data);
     } catch (erro) {
-        retorno = { "Erro ao retornar os dados!": erro }
+        retorno = { "erro" : erro };
     }
 
     res.send(retorno);
