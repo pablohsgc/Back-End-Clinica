@@ -1,36 +1,36 @@
 -- Criacao de tabelas
 create table Pessoa(
     codigo serial primary key,
-    nome varchar(50),
-    email varchar(30),
-    telefone varchar(20),
-    cep varchar(8),
-    logradouro varchar(50),
-    bairro varchar(50),
-    cidade varchar(50),
-    estado varchar(50)
+    nome varchar(50) not null,
+    email varchar(50) not null,
+    telefone varchar(20) not null,
+    cep varchar(8) not null,
+    logradouro varchar(50) not null,
+    bairro varchar(50) not null,
+    cidade varchar(50) not null,
+    estado varchar(50) not null
 );
 
 create table Funcionario(
     codigo integer primary key,
-    dataContrato Date,
-    salario numeric(6,2),
-    senhaHash varchar(30),
+    dataContrato Date not null,
+    salario numeric(6,2) not null,
+    senhaHash varchar(30) not null,
     FOREIGN KEY (codigo) REFERENCES Pessoa (codigo)
 );
 
 create table Paciente(
     codigo integer primary key,
-    altura numeric(3,2),
-    tipoSanguineo varchar(10),
-    peso numeric(3,1),
+    altura numeric(3,2) not null,
+    tipoSanguineo varchar(10) not null,
+    peso numeric(3,1) not null,
     FOREIGN KEY (codigo) REFERENCES Pessoa (codigo)
 );
 
 create table Medico(
     codigo integer primary key,
-    especialidade varchar(20),
-    crm numeric(6),
+    especialidade varchar(20) not null,
+    crm numeric(6) UNIQUE not null,
     FOREIGN KEY (codigo) REFERENCES Funcionario (codigo)
 );
 
@@ -43,9 +43,9 @@ create table Agenda(
     dataConsulta date not null,
     horario numeric(2) not null,
     nome varchar(50) not null,
-    email varchar(30),
-    telefone varchar(20),
-    codigoMedico integer,
+    email varchar(50) not null,
+    telefone varchar(20) not null,
+    codigoMedico integer not null,
     FOREIGN KEY (codigoMedico) REFERENCES Medico (codigo),
     FOREIGN KEY (horario) REFERENCES Horario (hora),
     CONSTRAINT consulta UNIQUE (dataConsulta,horario,codigoMedico) 
@@ -53,10 +53,10 @@ create table Agenda(
 
 create table Endereco(
     cep varchar(8) primary key,
-    logradouro varchar(50),
-    bairro varchar(50),
-    cidade varchar(50),
-    estado varchar(50)
+    logradouro varchar(50)not null,
+    bairro varchar(50) not null,
+    cidade varchar(50) not null,
+    estado varchar(50) not null
 );
 
 insert into Horario values (7);
@@ -93,7 +93,7 @@ insert into Funcionario values (1,current_date,3200,'asdasd');
 insert into Funcionario values (2,current_date,1000,'asdasd');
 insert into Funcionario values (3,current_date,2200,'asdasd');
 
-insert into Funcionario values (56,TO_DATE('31-05-2019','DD-MM-YYYY'),2200,'asdasd'); -- convertendo o formato da data, para o formato do banco de dados.
+-- insert into Funcionario values (56,TO_DATE('31-05-2019','DD-MM-YYYY'),2200,'asdasd'); -- convertendo o formato da data, para o formato do banco de dados.
 
 select * from funcionario;
 
