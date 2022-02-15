@@ -40,7 +40,7 @@ enderecosRoute.post('/enderecos', async (req: Request, res: Response, next: Next
         let cepCadastrado = await CadastraEndereco.cadastraEndereco(endereco);
         retorno = {"mensagem":"O endereço do cep: " + cepCadastrado + ", foi cadastrado!"};
     } catch (erro) {
-        retorno = { erro: "O endereço não pode ser cadastrado!" + erro};
+        retorno = { erro: "O endereço não pode ser cadastrado!\n" + erro};
     }
 
     res.send(retorno);

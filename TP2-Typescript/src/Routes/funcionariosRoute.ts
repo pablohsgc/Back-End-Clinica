@@ -31,7 +31,7 @@ funcionariosRoute.post('/funcionarios', verificaJWT, async (req:Request, res:Res
         retorno = { "mensagem": "Funcionario: " + nome + ", foi cadastrado com o código: " + codigo};
     }catch(erro){
        
-        retorno = { "erro" : "Funcionario não pode ser cadastrado! " + erro};
+        retorno = { "erro" : "Funcionario não pode ser cadastrado!\n" + erro};
     }
 
     res.send(retorno);

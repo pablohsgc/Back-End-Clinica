@@ -18,7 +18,10 @@ class AgendaBD {
             return rows || [];
         
         }catch(erro){
-            throw (<any>erro).detail;
+            if((<any>erro).detail)
+                throw (<any>erro).detail;
+        
+            throw erro;
         }
     }
 
@@ -39,8 +42,10 @@ class AgendaBD {
 
             return rows[0].codigo;
         } catch (erro) {
-            console.log(erro)
-            throw (<any>erro).detail;
+            if((<any>erro).detail)
+                throw (<any>erro).detail;
+            
+            throw erro;
         }
     }
 
@@ -54,7 +59,10 @@ class AgendaBD {
             return rows;
 
         } catch (erro) {
-            throw (<any>erro).detail;
+            if((<any>erro).detail)
+                throw (<any>erro).detail;
+        
+            throw erro;
         }
     }
 
@@ -69,7 +77,10 @@ class AgendaBD {
 
         } catch (erro) {
 
-            throw (<any>erro).detail;
+            if((<any>erro).detail)
+                throw (<any>erro).detail;
+        
+            throw erro;
         }
     }
 }

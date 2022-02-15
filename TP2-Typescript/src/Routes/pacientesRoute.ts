@@ -28,7 +28,7 @@ pacienteRoute.post('/pacientes', verificaJWT, async (req:Request, res:Response,n
         let codigo = await CadastraPaciente.cadastraPaciente(paciente);
         retorno = { "mensagem" : "Paciente: " + nome + ", cadastrado com o codigo: " + codigo};
     }catch(erro){
-        retorno = {"erro" : "Paciente não pode ser cadastrado! " + erro};
+        retorno = {"erro" : "Paciente não pode ser cadastrado!\n" + erro};
     }
 
     res.send(retorno);

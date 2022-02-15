@@ -30,7 +30,7 @@ medicosRoute.post('/medicos', verificaJWT, async (req: Request, res: Response, n
         let codigo = await CadastraMedico.cadastraMedico(funcionario);
         retorno = {"mensagem" : "Médico: " + nome + ", foi cadastrado com o código: " + codigo};
     } catch (erro) {
-        retorno = {"erro" : "Médico não pode ser cadastrado! " + erro};
+        retorno = {"erro" : "Médico não pode ser cadastrado!\n" + erro};
     }
 
     res.send(retorno);

@@ -17,7 +17,10 @@ class PacienteBD{
 
             return rows || [];
         }catch(erro){
-            throw (<any>erro).detail;
+            if((<any>erro).detail)
+                throw (<any>erro).detail;
+        
+            throw erro;
         }
     }
 
@@ -32,7 +35,10 @@ class PacienteBD{
             return rows[0].codigo;
         }catch(erro){
             
-            throw (<any>erro).detail;
+            if((<any>erro).detail)
+                throw (<any>erro).detail;
+        
+            throw erro;
         }
         
     }

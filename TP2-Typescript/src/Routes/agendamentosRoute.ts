@@ -31,7 +31,7 @@ agendamentosRoute.post('/agendamentos', async (req: Request, res: Response, next
         await cadastraConsulta.cadastraConsulta(consulta);
         retorno = {"mensagem":"Consulta de " + nome + " na data " + data + " às " + horario + " horas cadastrada!"};
     } catch (erro) {
-        retorno = {"erro" : "Não é possível fazer o agendamento! " + erro};
+        retorno = {"erro" : "Não é possível fazer o agendamento!\n" + erro};
     }
 
     res.send(retorno);

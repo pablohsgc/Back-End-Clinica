@@ -17,7 +17,10 @@ class EnderecoBD {
             return rows;
         } catch (erro) {
 
-            throw (<any>erro).detail;
+            if((<any>erro).detail)
+                throw (<any>erro).detail;
+        
+            throw erro;
         }
     }
 
@@ -34,7 +37,10 @@ class EnderecoBD {
             return rows[0];
         } catch (erro) {
 
-            throw (<any>erro).detail;
+            if((<any>erro).detail)
+                throw (<any>erro).detail;
+        
+            throw erro;
         } 
     }
 
@@ -55,7 +61,10 @@ class EnderecoBD {
             return rows[0].cep;
         } catch (erro) {
 
-            throw (<any>erro).detail;
+            if((<any>erro).detail)
+                throw (<any>erro).detail;
+        
+            throw erro;
         }
     }
 }
