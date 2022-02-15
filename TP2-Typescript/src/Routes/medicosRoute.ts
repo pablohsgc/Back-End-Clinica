@@ -14,6 +14,7 @@ medicosRoute.get('/medicos', async (req: Request, res: Response, next: NextFunct
 
 medicosRoute.post('/medicos', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
     let { nome, email, telefone, cep, logradouro, bairro, cidade, estado, dataContrato, salario, senhaHash, especialidade, crm } = req.body;
+    
     let funcionario = new Medico(nome, 0, email, telefone, cep, logradouro, bairro, cidade, estado, dataContrato, salario, senhaHash, especialidade, crm);
     let retorno = "";
 
@@ -34,10 +35,12 @@ medicosRoute.get('/medicos/especialidades', async (req: Request, res: Response, 
 
 medicosRoute.get('/medicos/especialista/:especialidade', async (req: Request, res: Response, next: NextFunction) => {
     const especialidade = req.params.especialidade;
-    if(!especialidade)
-        console.log("Sem especialidade")
     const especialidades = await MedicoBD.medicosPorEspecialidade(especialidade);
     res.send(especialidades);
+})
+
+medicosRoute.get('/medicos/especialista/', async (req: Request, res: Response, next: NextFunction) => {
+    res.send({"erro":"É necessário informar uma especialidade!"});
 })
 
 export default medicosRoute;
