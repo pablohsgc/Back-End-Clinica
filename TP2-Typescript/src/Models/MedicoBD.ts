@@ -95,6 +95,26 @@ class MedicoBD{
             throw erro;
         }
     }
+
+    async contemCRM(crm:Number){
+        const values = [crm];
+
+        const query = 'select * from medico where crm=$1'
+
+        try{
+            const {rows} = await db.query(query,values);
+
+            if(rows[0]) return true;
+
+            return false;
+        }catch(erro){
+            
+            if((<any>erro).detail)
+                throw (<any>erro).detail;
+        
+            throw erro;
+        }
+    }
 }
 
 export default new MedicoBD();

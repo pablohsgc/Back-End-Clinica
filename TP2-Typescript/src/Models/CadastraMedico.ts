@@ -25,7 +25,7 @@ class CadastraMedico{
         ); 
         
         try{
-            this.verificaValidezMedico(medico);
+            await this.verificaValidezMedico(medico);
             
             let codigoPessoa = await CadastraFuncionario.cadastraFuncionario(funcionario)
             
@@ -38,7 +38,17 @@ class CadastraMedico{
         }
     }
 
-    verificaValidezMedico(medico:Medico){
+    async verificaValidezMedico(medico:Medico){
+        let contemCRMMedico = false;
+
+        try{
+            contemCRMMedico = await MedicoBD.contemCRM(medico.getCRM());
+        }catch(erro){
+            throw erro;
+        }
+
+        if(contemCRMMedico) throw "CRM já está cadastrado!";
+
         if( medico.getCRM() <= 0 ||
             medico.getEspecialidade() === "")
             throw "Dados do médico devem ser preenchidos corretamente!"
