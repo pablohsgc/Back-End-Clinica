@@ -7,7 +7,7 @@ import verificaJWT from "../middleware/verificaJWT";
 
 const agendamentosRoute = Router();
 
-agendamentosRoute.post('/agendamentos/', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
+agendamentosRoute.post('/agendamentos', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
     let {data} = req.body;
     let retorno = null;
     
@@ -20,7 +20,7 @@ agendamentosRoute.post('/agendamentos/', verificaJWT, async (req: Request, res: 
     res.send(retorno);
 })
 
-agendamentosRoute.post('/agendamentos', async (req: Request, res: Response, next: NextFunction) => {
+agendamentosRoute.post('/agenda', async (req: Request, res: Response, next: NextFunction) => {
     let { codigo, data, horario, nome, email, telefone, codigoMedico } = req.body;
     let consulta = new Agenda(codigo, data, horario, nome, email, telefone, codigoMedico);
     let cadastraConsulta = new CadastraConsulta();

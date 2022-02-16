@@ -18,7 +18,7 @@ export default class CadastraConsulta {
 
     verificaValidezConsulta(consulta:Agenda){
         if( consulta.getNome() === "" ||
-            consulta.getData().getTime() <= 0 ||
+            new Date(consulta.getData()).getDate() <= 0 ||
             consulta.getEmail() === "" ||
             consulta.getTelefone() === "" ||
             (consulta.getHorario() < 7 || consulta.getHorario() > 17 || consulta.getHorario() <= 0))

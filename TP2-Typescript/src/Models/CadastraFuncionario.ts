@@ -38,7 +38,7 @@ class CadastraFuncionario{
 
     verificaValidezFuncionario(funcionario:Funcionario){
         if( funcionario.getSalario() <= 0 ||
-            funcionario.getDataContrato().getTime() <= 0 ||
+            new Date(funcionario.getDataContrato()).getDate() <= 0 ||
             funcionario.getSenhaHash() === "")
             throw "Dados do funcionario devem ser preenchidos corretamente!"
     }
