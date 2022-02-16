@@ -69,8 +69,6 @@ class AgendaBD {
     }
 
     async horariosDisponiveis(codigoMedico: Number, data: Date): Promise<JSON> {
-        console.log("Codigo medico: ", codigoMedico)
-        console.log("Data",data)
         const values = [data, codigoMedico];
         const query = "select h.hora from horario h except (select a.horario from agenda a where a.dataconsulta=$1 and a.codigomedico=$2) ORDER BY hora; ";
 
