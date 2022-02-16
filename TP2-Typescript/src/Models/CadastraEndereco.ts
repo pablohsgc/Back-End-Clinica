@@ -8,6 +8,8 @@ class CadastraEndereco{
 
     async cadastraEndereco(endereco:Endereco){
         try{
+            this.verificaValidezEndereco(endereco);
+            
             let cepCadastrado = await EnderecoBD.insereEndereco(endereco);
             
             return cepCadastrado;

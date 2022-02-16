@@ -132,6 +132,9 @@ select h.hora from horario h except select a.horario from agenda a where a.datac
 select h.hora from horario h except (select a.horario from agenda a where a.dataconsulta='2021-02-21' and a.codigoMedico=44) ORDER BY hora; 
 -- mesma projecao da anterior porem de forma ordenada
 
+select a.horario, a.nome, a.email, a.telefone, p.nome medico from agenda a join pessoa p on a.codigomedico=p.codigo join medico m on m.codigo=a.codigomedico where a.dataconsulta=$1
+-- projeção de toda a agenda em uma determinada data
+
 drop table pessoa cascade;
 drop table paciente cascade ;
 drop table funcionario cascade ;

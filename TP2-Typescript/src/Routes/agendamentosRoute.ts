@@ -7,18 +7,17 @@ import verificaJWT from "../middleware/verificaJWT";
 
 const agendamentosRoute = Router();
 
-agendamentosRoute.get('/agendamentos', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
-    const agendamentos = await AgendaBD.agendamentos();
-    
+agendamentosRoute.post('/agendamentos/', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
+    let {data} = req.body;
     let retorno = null;
     
     try{
-        retorno = agendamentos;
+        retorno = await AgendaBD.agendamentos(data);
     }catch(erro){
         retorno = {"erro":erro};
     }
 
-    res.send(agendamentos);
+    res.send(retorno);
 })
 
 agendamentosRoute.post('/agendamentos', async (req: Request, res: Response, next: NextFunction) => {

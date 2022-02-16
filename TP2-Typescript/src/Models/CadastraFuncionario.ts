@@ -23,6 +23,8 @@ class CadastraFuncionario{
         ); 
         
         try{
+            this.verificaValidezFuncionario(funcionario);
+            
             let codigoPessoa = await CadastraPessoa.cadastraPessoa(pessoa);
             
             funcionario.setCodigo(codigoPessoa);

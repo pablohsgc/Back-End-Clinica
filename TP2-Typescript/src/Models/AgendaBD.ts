@@ -7,11 +7,13 @@ class AgendaBD {
 
     }
 
-    async agendamentos() {
-        try{
-            const query = 'select * from AGENDA';
+    async agendamentos(data:String) {
+        let values = [data];
 
-            const result = await db.query(query);
+        try{
+            const query = "select a.horario, a.nome, a.email, a.telefone, p.nome medico, m.especialidade from agenda a join pessoa p on a.codigomedico=p.codigo join medico m on m.codigo=a.codigomedico where a.dataconsulta=$1";
+
+            const result = await db.query(query,values);
 
             const rows = result.rows;
 
