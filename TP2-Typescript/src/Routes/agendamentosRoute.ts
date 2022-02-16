@@ -51,6 +51,7 @@ agendamentosRoute.post('/agendamentos/consultasMarcadas', verificaJWT, async (re
 
 agendamentosRoute.post('/agendamentos/horariosLivres', verificaJWT, async (req: Request, res: Response, next: NextFunction) => {
     let { codigoMedico, data } = req.body;
+    console.log("agendamentos, codigo medico:",codigoMedico)
     let retorno = null;
 
     try {
@@ -58,6 +59,8 @@ agendamentosRoute.post('/agendamentos/horariosLivres', verificaJWT, async (req: 
     } catch (erro) {
         retorno = { "erro" : erro };
     }
+
+    console.log(retorno)
 
     res.send(retorno);
 })
