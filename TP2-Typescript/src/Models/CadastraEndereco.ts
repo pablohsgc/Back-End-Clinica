@@ -22,10 +22,11 @@ class CadastraEndereco{
     verificaValidezEndereco(endereco:Endereco){
         if( endereco.getBairro() === "" ||
             endereco.getCep() === "" ||
+            endereco.getCep().length < 8 ||
             endereco.getCidade() === "" ||
             endereco.getEstado() === "" ||
             endereco.getLogradouro() === "")
-            throw "Todos os dados do email devem ser preenchidos!"
+            throw "Todos os dados do email devem ser preenchidos corretamente!"
     }
 }
 
